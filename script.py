@@ -42,7 +42,7 @@ def get_mean(mean):
         if sort in color_collection:
             sub_mean.append(round(color_collection.count(sort) / len(color_collection), 2))
     # 
-    for index, value in enumerate(sorts):
+    for index, _ in enumerate(sorts):
         if max(sub_mean) == sub_mean[index]:
             print("Mean color:", sorts[index])
 
@@ -62,13 +62,15 @@ def most_worn_color(most_worn):
             sub_mean.append(round(color_collection.count(sort) / len(color_collection), 2))
 
     # 
-    for index, value in enumerate(sorts):
+    for index, _ in enumerate(sorts):
         if max(sub_mean) == sub_mean[index]:
             result = "Most worn color: "+ sorts[index]
     print(result)
 
 most_worn_color(most_worn)
 print()
+
+
 # The code to sort for median color.
 print("For median color..")
 median_color = input("Type mc: ")
@@ -87,36 +89,28 @@ def get_median(media):
 get_median(median_color)
 
 
+for weekly_worn_colors in colors:
+    for color in weekly_worn_colors:
+        color_collection.append(color)
+for sort in sorts:
+    frq = color_collection.count(sort)
 
-
-
-
-
-
-
-
-# for weekly_worn_colors in colors:
-#     for color in weekly_worn_colors:
-#         color_collection.append(color)
-# for sort in sorts:
-#     frq = color_collection.count(sort)
-
-#     # fetch data
-#     fetch = """SELECT * FROM colors"""
-#     cursor.execute(fetch)
-#     data_retrieve = cursor.fetchone()
-#     print(data_retrieve)
+    # fetch data
+    fetch = """SELECT * FROM colors"""
+    cursor.execute(fetch)
+    data_retrieve = cursor.fetchone()
+    print(data_retrieve)
 
 
 
     # data insert
-#     insert_data = """INSERT INTO colors (title, frq)VALUES(%s, %s)"""
-#     data = (sort, frq)
-#     cursor.execute(insert_data, data)
+    insert_data = """INSERT INTO colors (title, frq)VALUES(%s, %s)"""
+    data = (sort, frq)
+    cursor.execute(insert_data, data)
             
-# conn.commit()
-# rowCount = cursor.rowcount
-# print(rowCount, "Data inserted successfully..")
+conn.commit()
+rowCount = cursor.rowcount
+print(rowCount, "Data inserted successfully..")
 
 
 
